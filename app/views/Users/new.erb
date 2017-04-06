@@ -1,0 +1,17 @@
+<h1 class="container">Brah! So you wanna pledge brah?</h1>
+<div class="container">
+  <p>After you finish your keg stand, fill out this paperwork my bro.  Many a keystone lite and chill Dave Matthews deep cuts awaits... </p>
+  <strong>BROVERFLOW!</strong>
+  <form id="registration-form" method="POST" action="/users">
+    <input type="text" placeholder="suh dude username" name="user[username]"><br><br>
+    <input type="text" placeholder="my broman, email?" name="user[email]"><br><br>
+    <input type="password" placeholder="siiiick brah password" name="user[password]"><br><br>
+    <input type="submit" value="register">
+  </form>
+
+  <% if @errors %>
+    <% @errors.each do |error| %>
+    <p class="error"> <%= error %> </p>
+    <% end %>
+  <% end %>
+</div>
