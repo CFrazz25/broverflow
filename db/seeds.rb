@@ -7,7 +7,12 @@ end
 end
 
 30.times do
+
   Answer.create(body: Faker::Lorem.paragraph, user_id: rand(1..15), question_id: rand(1..15))
+
 end
+
+
+
 
 

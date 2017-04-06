@@ -29,6 +29,7 @@
 <!-- if user loggedin? -->
 <% if logged_in? %>
 <!-- add answer form -->
+
   <br>
   <form method="post" action="/questions/<%= @question.id %>/answers">
     Add Answer:
@@ -36,4 +37,5 @@
     <input type="submit" value="Thank you!">
   </form>
 <% end %>
+
 

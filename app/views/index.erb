@@ -4,8 +4,13 @@
         <form method="post" action='/questions/<%= question.id %>/vote' class="inline">
           <button type="submit" name="upvote" value="upvote"></button>
         </form>
-        <h2><a href='/questions/<%= question.id %>'><%= question.title %></a></h2>
+        <a href='/questions/<%= question.id %>'><%= question.title %></a>
     <% end %>
   </div>
+
+</div>
+
+<div class="container">
+  <a href="/questions/new">Ask a new question, bro..</a>
 </div>
 
