@@ -3,14 +3,13 @@
 end
 
 15.times do
-  Question.create(title: Faker::Lorem.sentence, body: Faker::Lorem.paragraph, user_id: rand(15))
+  Question.create(title: Faker::Lorem.sentence, body: Faker::Lorem.paragraph, user_id: rand(1..15))
 end
 
 30.times do
-  answers = Answer.create(body: Faker::Lorem.paragraph, user_id: rand(15), question_id: rand(15))
-  # 20.times do
-  # answers[rand(29)].comments.create(body: Faker::Lorem.paragraph, user_id: rand(15) )
-  # end
+
+  Answer.create(body: Faker::Lorem.paragraph, user_id: rand(1..15), question_id: rand(1..15))
+
 end
 
 

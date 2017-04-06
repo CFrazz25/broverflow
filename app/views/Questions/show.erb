@@ -1,4 +1,7 @@
 <!-- show the question that user selcted -->
+<h2><%= @question.title %></h2>
+<h4><%= @question.body %></h4>
+<p> Created by: <%= @question.user.username %> on <%= @question.created_at %>. </p>
 <!-- total votes -->
 <!-- if logged in? comments form -->
 <!-- if user created?  edit, delete -->
@@ -9,6 +12,11 @@
 <!-- if user created?  edit, delete -->
 
 <!-- display all answers -->
+<h3> Answers </h3>
+<% @answers.each do |answer| %>
+  <li> <%= answer.body %> </li>
+  <p> Answered by: <%= answer.user.username %> </p>
+  <% end %>
 <!-- total votes -->
 <!-- if logged in? up/down vote(only 1 vote), comments form -->
 <!-- if user created?  edit, delete -->
@@ -19,6 +27,15 @@
 <!-- if user created?  edit, delete -->
 
 <!-- if user loggedin? -->
+<% if logged_in? %>
 <!-- add answer form -->
 
-<p> <%= @question.body %> </p>
+  <br>
+  <form method="post" action="/questions/<%= @question.id %>/answers">
+    Add Answer:
+    <input type="text" name="body" placeholder="help me!">
+    <input type="submit" value="Thank you!">
+  </form>
+<% end %>
+
+
