@@ -17,17 +17,20 @@
 
   <title></title>
 </head>
-<% # if logged_in? %>
-<!--     <div id='log-out'> -->
-<!--       <a href="/">Logout</a> -->
-   <!--  </div> -->
-  <% # else %>
-   <div id='login-button'>
-      <a href="/sessions/new">Login</a>
-      <a href="/users/new">Register</a>
-    </div>
-  <% # end %>
 <body>
+     <header class="register">
+      <p><a href="/">home</a>
+      <% if !logged_in? %>
+          <a href="/sessions/new">login</a>
+          <a href="/users/new">register</a></p>
+          <% else %>
+          <form method="post" action="/sessions">
+            <input type="hidden" name="_method" value="delete">
+            <input type="submit" value="Logout" class="button">
+          </form>
+          <p>Hello, <a href= "/users/<%= current_user.id %>"><%= current_user.username %></a></p>
+      <% end %>
+  </header>
   <%= yield %>
 </body>
 </html>
