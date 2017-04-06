@@ -1,4 +1,7 @@
 <!-- show the question that user selcted -->
+<h2><%= @question.title %></h2>
+<h4><%= @question.body %></h4>
+<p> Created by: <%= @question.user.username %> on <%= @question.created_at %>. </p>
 <!-- total votes -->
 <!-- if logged in? comments form -->
 <!-- if user created?  edit, delete -->
