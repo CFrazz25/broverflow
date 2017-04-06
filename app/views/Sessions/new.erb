@@ -1,0 +1,15 @@
+<div class="container">
+  <h1 class="container">Enter the Frat</h1>
+  <p>Beyond this login lies the bountiful bro banquet of <strong>broverflow</strong>.</p>
+  <form id="login-form" method="POST" action="/sessions">
+    <input type="text" placeholder="suh dude email" name="email"><br><br>
+    <input type="password" placeholder="siiiick brah password" name="password"><br><br>
+    <input type="submit" value="login">
+  </form>
+
+  <% if @errors %>
+    <% @errors.each do |error| %>
+      <p class="error"> <%= error %> </p>
+    <% end %>
+  <% end %>
+</div>
