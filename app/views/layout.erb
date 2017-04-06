@@ -19,16 +19,16 @@
 </head>
 <body>
      <header class="register">
-      <p><a href="/">home</a>
+      <p><a href="/">Brohome</a>
       <% if !logged_in? %>
           <a href="/sessions/new">login</a>
           <a href="/users/new">register</a></p>
           <% else %>
           <form method="post" action="/sessions">
             <input type="hidden" name="_method" value="delete">
-            <input type="submit" value="Logout" class="button">
+            <input type="submit" value="Logout Bro" class="button">
           </form>
-          <p>Hello, <a href= "/users/<%= current_user.id %>"><%= current_user.username %></a></p>
+          <p>Hello, bro <a href= "/users/<%= current_user.id %>"><%= current_user.username %></a></p>
       <% end %>
   </header>
   <%= yield %>
