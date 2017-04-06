@@ -7,7 +7,13 @@ end
 end
 
 30.times do
-  Answer.create(body: Faker::Lorem.paragraph, user_id: rand(15), question_id: rand(15))
+  answers = Answer.create(body: Faker::Lorem.paragraph, user_id: rand(15), question_id: rand(15))
+  # 20.times do
+  # answers[rand(29)].comments.create(body: Faker::Lorem.paragraph, user_id: rand(15) )
+  # end
 end
+
+
+
 
 
