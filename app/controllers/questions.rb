@@ -12,10 +12,9 @@ get '/questions/:id' do
   erb :'/questions/show'
 end
 
-get '/questions/:id/vote' do
-end
-
 post '/questions' do
   @question = Question.create(title: params[:title], body: params[:body], user_id: current_user.id)
   erb :'questions/show'
 end
+
+

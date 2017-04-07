@@ -7,3 +7,22 @@
 th {
   text-align: left;
 }
+
+/*#background-image {
+/*  background: url("background.jpg");
+  background-image: url("http://static.fjcdn.com/pictures/Natural_d18ab5_2167737.jpg");*/
+.vote-button {
+  color: #8C8C8C;
+  text-decoration: none;
+  display: inline;
+  vertical-align: sub;
+}
+
+.upvote-button {
+  background-color: transparent;
+  border: none;
+  padding-top: 5px;
+  color: #8C8C8C;
+  vertical-align: sub;
+  padding: 1px 0px 0px 0px;
+}

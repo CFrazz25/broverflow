@@ -1,13 +1,17 @@
 <div class="container">
   <div>
+    <p><%= @error %></p>
     <% Question.all.each do |question| %>
+        <a href='/questions/<%= question.id %>'><%= question.title %></a> <span><%= question.total_votes %></span>
         <form method="post" action='/questions/<%= question.id %>/vote' class="inline">
-          <button type="submit" name="upvote" value="upvote"></button>
+          <button type="submit" name="upvote" value="upvote"></button><span> +1 lite beer</span>
         </form>
-        <a href='/questions/<%= question.id %>'><%= question.title %></a>
+        <form method="post" action='/questions/<%= question.id %>/vote' class="inline">
+          <button type="submit" name="downvote" value="downvote"></button><span> -1 lite beer</span>
+        </form>
+
     <% end %>
   </div>
-
 </div>
 
 <div class="container">
