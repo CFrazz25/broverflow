@@ -1,6 +1,7 @@
 post '/questions/:question_id/vote' do
   question = Question.find_by(id: params[:question_id])
   uservote = question.votes.find_by(user_id: session[:user_id])
+  @questions = Question.all.sort_by {|question| question.total_votes}.reverse
 
   if params[:upvote]
     if uservote && uservote.value == 1
@@ -38,6 +39,7 @@ post '/answers/:answer_id/vote' do
   answer = Answer.find_by(id: params[:answer_id])
   uservote = answer.votes.find_by(user_id: session[:user_id])
   @question = Question.find_by(id: answer.question_id)
+  @sorted_answers = @question.answers.sort_by {|answer| answer.total_votes}.reverse
 
   if params[:upvote]
     if uservote && uservote.value == 1
