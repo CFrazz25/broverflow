@@ -1,5 +1,12 @@
 <!-- show the question that user selcted -->
 <div class="container" id="question-block">
+  <% if author?(@question.user_id) %>
+      <h3><a href="/questions/<%= @question.id %>/edit">Edit Questions</a></h3>
+      <form method="post" action="/questions/<%= @question.id %>">
+          <input type="hidden" name="_method" value="delete">
+          <button type="submit">Delete question</button>
+      </form>
+  <% end %>
   <h2>Here's my question bro: <%= @question.title %></h2>
   <h4><%= @question.body %></h4>
   <p> Created by Bro: <%= @question.user.username %> on <%= @question.created_at %>. </p>
@@ -32,6 +39,13 @@
   <% @question.answers.each do |answer| %>
   <li> <%= answer.body %> </li>
   <p> Answered by <%= answer.user.username %> bro</p>
+  <% if author?(answer.user_id) %>
+    <h3><a href="/questions/<%= @question.id %>/answers/<%= answer.id %>/edit">Edit Answer</a></h3>
+    <form method="post" action="/questions/<%= @question.id %>">
+          <input type="hidden" name="_method" value="delete">
+          <button type="submit">Delete Answer</button>
+    </form>
+  <% end %>
     <div>
       <% answer.comments.each do |comment| %>
         <p><%= comment.user.username %> commented: <%= comment.body %></p>

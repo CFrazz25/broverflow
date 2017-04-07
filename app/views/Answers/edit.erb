@@ -1,0 +1,23 @@
+<div id="homepage-shtuff">
+  <h1>Question: <%= @question.title %></h1>
+</div>
+
+<div id="homepage-shtuff">
+  <h3>You wanna edit your answer?</h3>
+</div>
+
+<% if @errors %>
+  <div id="homepage-shtuff">
+    <% @errors.each do |error| %>
+      <p class="error"><%= error %></p>
+    <% end %>
+  </div>
+<% end %>
+
+<div id="homepage-shtuff">
+  <form action="/questions/<%= @answer.question_id %>/answers/<%= @answer.id %>" method="post">
+    <input type="hidden" name="_method" value="put">
+    <input type="text" name="answer[body]" placeholder="bro, help a bro out!" value="<%= @answer.try(:body) %>"><br><br>
+    <input type="submit" value="bro, thanks bro!">
+  </form>
+</div>
