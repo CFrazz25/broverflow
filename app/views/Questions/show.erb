@@ -5,17 +5,18 @@
   <p> Created by Bro: <%= @question.user.username %> on <%= @question.created_at %>. </p>
   <div>
     <% @question.comments.each do |comment| %>
-    <li> <%= comment.body %> </li>
-    <p> Commented by Bro: <%= comment.user.username %> </p>
+      <p><%= comment.user.username %> commented: <%= comment.body %></p>
     <% end %>
   </div>
-  <div class="container" id="question-comment-block">
-      <form method="post" action="/questions/<%= @question.id %>/comments">
-        Comment this q, Brosepher:
-        <input type="text" name="body" placeholder="bro, elaborate that shit!">
-        <input type="submit" value="bro, thanks bro!">
-      </form>
-  </div>
+  <% if logged_in? %>
+    <div class="container" id="question-comment-block">
+        <form method="post" action="/questions/<%= @question.id %>/comments">
+          Comment this q, Brosepher:
+          <input type="text" name="body" placeholder="bro, elaborate that shit!">
+          <input type="submit" value="bro, thanks bro!">
+        </form>
+    </div>
+  <% end %>
 </div>
 <!-- total votes -->
 <!-- if logged in? comments form -->
@@ -30,20 +31,21 @@
   <h3> Bro Answers </h3>
   <% @question.answers.each do |answer| %>
   <li> <%= answer.body %> </li>
-  <p> Answered by Bro: <%= answer.user.username %> </p>
-    <div class="container">
+  <p> Answered by <%= answer.user.username %> bro</p>
+    <div>
       <% answer.comments.each do |comment| %>
-        <li> <%= comment.body %> </li>
-        <p> Commented by Bro: <%= comment.user.username %> </p>
+        <p><%= comment.user.username %> commented: <%= comment.body %></p>
       <% end %>
     </div>
-    <div class="container" id="answer-comment-block">
-      <form method="post" action="/questions/<%= @question.id %>/answers/<%= answer.id %>/comments">
-        Comment this a, dogg:
-        <input type="text" name="body" placeholder="bro, elaborate that shit!">
-        <input type="submit" value="bro, thanks bro!">
-      </form>
-    </div>
+    <% if logged_in? %>
+      <div class="container" id="answer-comment-block">
+        <form method="post" action="/questions/<%= @question.id %>/answers/<%= answer.id %>/comments">
+          Comment this a, dogg:
+          <input type="text" name="body" placeholder="bro, elaborate that shit!">
+          <input type="submit" value="bro, thanks bro!">
+        </form>
+      </div>
+    <% end %>
   <% end %>
 </div>
 <!-- total votes -->
