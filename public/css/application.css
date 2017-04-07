@@ -1,3 +1,8 @@
+body {
+  background: url("http://az616578.vo.msecnd.net/files/2015/06/23/6357067084439497251902032246_frat-boys-shorts.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
 .container {
   margin: 20px auto;
   width: 600px;
@@ -16,3 +21,41 @@ header {
   margin: 20px auto;
   width: 1000px;
 }
+
+#homepage-shtuff {
+  margin: auto;
+  width: 600px;
+  padding: 10px;
+  background-color: black;
+  opacity: .85;
+}
+
+a {
+  color: white;
+}
+
+#title {
+  padding: 30px;
+  text-align: center;
+  color: white;
+  margin: auto;
+  width: 600px;
+  background-color: black;
+  opacity: 0.85;
+  border-radius: 5px;
+  margin-bottom: 30px;
+}
+
+#question-block {
+  background-color: black;
+  color: #f49292;
+  opacity: 0.85;
+}
+
+#answer-block {
+  background-color: black;
+  opacity: 0.85;
+  color: #f49292;
+}
+
+
