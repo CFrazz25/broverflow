@@ -1,11 +1,6 @@
 post '/questions/:question_id/vote' do
   question = Question.find_by(id: params[:question_id])
   uservote = question.votes.find_by(user_id: session[:user_id])
-  # if uservote
-  #   @error = "you voted already"
-  #   redirect '/'
-  # end
-
 
   if params[:upvote]
     if uservote && uservote.value == 1
@@ -21,6 +16,7 @@ post '/questions/:question_id/vote' do
       question.total_votes
       redirect '/questions'
     end
+
   elsif params[:downvote]
     if uservote && uservote.value == -1
       @error = "you can't downvote on this post more than once"
@@ -36,5 +32,41 @@ post '/questions/:question_id/vote' do
     redirect '/questions'
     end
   end
+end
 
+post '/answers/:answer_id/vote' do
+  answer = Answer.find_by(id: params[:answer_id])
+  uservote = answer.votes.find_by(user_id: session[:user_id])
+  @question = Question.find_by(id: answer.question_id)
+
+  if params[:upvote]
+    if uservote && uservote.value == 1
+      @error = "you can't upvote on this post more than once"
+      answer.total_votes
+      erb :"questions/show"
+    elsif uservote && uservote.value == -1
+      uservote.update_attributes(value: 1)
+      answer.total_votes
+      redirect "/questions/#{answer.question_id}"
+    else
+      vote = answer.votes.create(user_id: session[:user_id], value: 1)
+      answer.total_votes
+      redirect "/questions/#{answer.question_id}"
+    end
+
+  elsif params[:downvote]
+    if uservote && uservote.value == -1
+      @error = "you can't downvote on this post more than once"
+      answer.total_votes
+      erb :"questions/show"
+    elsif uservote && uservote.value == 1
+      uservote.update_attributes(value: -1)
+      answer.total_votes
+     redirect "/questions/#{answer.question_id}"
+    else
+    vote = answer.votes.create(user_id: session[:user_id], value: -1)
+    answer.total_votes
+    redirect "/questions/#{answer.question_id}"
+    end
+  end
 end

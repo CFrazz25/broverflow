@@ -29,8 +29,19 @@
 <!-- display all answers -->
 <div class="container" id="answer-block">
   <h3> Bro Answers </h3>
+  <% if @error %>
+    <p class="error"><%= @error %></p>
+  <% end %>
   <% @question.answers.each do |answer| %>
-  <li> <%= answer.body %> </li>
+  <span><%= answer.total_votes %></span>
+  <% if logged_in? %>
+    <form method="post" action='/answers/<%= answer.id %>/vote' class="inline">
+      <input type="submit" name="upvote" value="+1 lite beer">
+    </form>
+    <form method="post" action='/answers/<%= answer.id %>/vote' class="inline">
+      <input type="submit" name="downvote" value="-1 lite beer">
+    </form>
+  <% end %>  <li> <%= answer.body %> </li>
   <p> Answered by <%= answer.user.username %> bro</p>
     <div>
       <% answer.comments.each do |comment| %>
