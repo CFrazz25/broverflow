@@ -1,18 +1,19 @@
+<% if logged_in? %>
+  <div id="new-q">
+    <h3><a href="/questions/new">Ask a new question, bro..</a></h3>
+  </div>
+<% end %>
+
 <div id="homepage-shtuff">
-  <div class="container">
     <div>
       <% if @error %>
         <p class="error"><%= @error %></p>
       <% end %>
-        <% @questions.each do |question| %>
+    <% @questions.each do |question| %>
           <a href='/questions/<%= question.id %>'><%= question.title %></a> <span><%= question.total_votes %></span><br>
-    <%= erb :"_votes", locals: {question: question} %>
-  <% end %>
-    </div>
-
-    <% if logged_in? %>
-      <div class="container">
-        <a href="/questions/new">Ask a new question, bro..</a>
-      </div>
+      <%= erb :"_votes", locals: {question: question} %>
     <% end %>
+
+    </div>
 </div>
+

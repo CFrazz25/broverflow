@@ -20,20 +20,20 @@
   <title></title>
 </head>
 <body id="background-image" >
-     <header class="register">
-      <p><a href="/">Brohome</a>
+    <h1  id="title">BROVERFLOW - Suuhhhhh Duuueeee</h1>
+   <header class="register">
+      <h3><a class="nav" href="/">Brohome</a></h3>
       <% if !logged_in? %>
-          <a href="/sessions/new">login</a>
-          <a href="/users/new">register</a></p>
+          <h3><a class="nav" href="/sessions/new">login</a></h3>
+          <h3><a class="nav" href="/users/new">register</a></h3>
           <% else %>
           <form method="post" action="/sessions">
             <input type="hidden" name="_method" value="delete">
             <input type="submit" value="Logout Bro" class="button">
           </form>
-          <p>Hello, bro <a href= "/users/<%= current_user.id %>"><%= current_user.username %></a></p>
+          <h3 class="nav">Hello, bro <%= current_user.username %></h3>
       <% end %>
   </header>
-      <h1  id="title">BROVERFLOW - Suuhhhhh Duuueeee</h1>
   <%= yield %>
 </body>
 </html>

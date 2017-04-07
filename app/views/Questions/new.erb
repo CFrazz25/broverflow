@@ -1,11 +1,17 @@
-<div class="container">
+<div id="homepage-shtuff">
   <h1>You got a question?</h1>
 </div>
 
-<div class="container">
+<% if @errors %>
+  <% @errors.each do |error| %>
+    <p class="error"><%= error %></p>
+  <% end %>
+<% end %>
+
+<div id="homepage-shtuff">
   <form action="/questions" method="post">
-    <input type="text" name="title" placeholder="give it a title brosepher"><br>
-    <textarea type="text" name="body", placeholder="now tell me more about it dude"></textarea><br>
+    <input type="text" name="title" placeholder="give it a title brosepher"><br><br>
+    <textarea type="text" name="body", placeholder="now tell me more about it dude"></textarea><br><br>
     <input type="submit" value="submit">
   </form>
 </div>
