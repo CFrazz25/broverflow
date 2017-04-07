@@ -13,6 +13,10 @@ th {
   text-align: left;
 }
 
+.error {
+  color: red;
+}
+
 header {
   margin: 20px auto;
   width: 1000px;
@@ -41,3 +45,17 @@ a {
   border-radius: 5px;
   margin-bottom: 30px;
 }
+
+#question-block {
+  background-color: black;
+  color: #f49292;
+  opacity: 0.85;
+}
+
+#answer-block {
+  background-color: black;
+  opacity: 0.85;
+  color: #f49292;
+}
+
+
