@@ -9,31 +9,31 @@ post '/questions/:question_id/vote' do
 
   if params[:upvote]
     if uservote && uservote.value == 1
-      @error = "you can't upvote again"
+      @error = "you can't upvote on this post more than once"
       question.total_votes
-      redirect '/'
+      erb :index
     elsif uservote && uservote.value == -1
       uservote.update_attributes(value: 1)
       question.total_votes
-      redirect '/'
+      redirect '/questions'
     else
       vote = question.votes.create(user_id: session[:user_id], value: 1)
       question.total_votes
-      redirect '/'
+      redirect '/questions'
     end
   elsif params[:downvote]
     if uservote && uservote.value == -1
-      @error = "you can't downvote again"
+      @error = "you can't downvote on this post more than once"
       question.total_votes
-      redirect '/'
+      erb :index
     elsif uservote && uservote.value == 1
       uservote.update_attributes(value: -1)
       question.total_votes
-      redirect '/'
+      redirect '/questions'
     else
     vote = question.votes.create(user_id: session[:user_id], value: -1)
     question.total_votes
-    redirect '/'
+    redirect '/questions'
     end
   end
 
