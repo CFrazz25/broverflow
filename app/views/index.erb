@@ -4,7 +4,7 @@
       <% if @error %>
         <p class="error"><%= @error %></p>
       <% end %>
-        <% Question.all.each do |question| %>
+        <% @questions.each do |question| %>
           <a href='/questions/<%= question.id %>'><%= question.title %></a> <span><%= question.total_votes %></span><br>
     <%= erb :"_votes", locals: {question: question} %>
   <% end %>

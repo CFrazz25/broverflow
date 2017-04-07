@@ -1,4 +1,5 @@
 get '/questions' do
+  @questions = Question.all.sort_by {|question| question.total_votes}.reverse
   erb :index
 end
 
