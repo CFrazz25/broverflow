@@ -10,7 +10,8 @@
 
 </div>
 
-<div class="container">
-  <a href="/questions/new">Ask a new question, bro..</a>
-</div>
-
+<% if logged_in? %>
+  <div class="container">
+    <a href="/questions/new">Ask a new question, bro..</a>
+  </div>
+<% end %>

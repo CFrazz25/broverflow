@@ -1,22 +1,51 @@
 <!-- show the question that user selcted -->
-<h2>Here's my question bro: <%= @question.title %></h2>
-<h4><%= @question.body %></h4>
-<p> Created by Bro: <%= @question.user.username %> on <%= @question.created_at %>. </p>
+<div class="container" id="question-block">
+  <h2>Here's my question bro: <%= @question.title %></h2>
+  <h4><%= @question.body %></h4>
+  <p> Created by Bro: <%= @question.user.username %> on <%= @question.created_at %>. </p>
+  <div>
+    <% @question.comments.each do |comment| %>
+    <li> <%= comment.body %> </li>
+    <p> Commented by Bro: <%= comment.user.username %> </p>
+    <% end %>
+  </div>
+  <div class="container" id="question-comment-block">
+      <form method="post" action="/questions/<%= @question.id %>/comments">
+        Comment this q, Brosepher:
+        <input type="text" name="body" placeholder="bro, elaborate that shit!">
+        <input type="submit" value="bro, thanks bro!">
+      </form>
+  </div>
+</div>
 <!-- total votes -->
 <!-- if logged in? comments form -->
 <!-- if user created?  edit, delete -->
-
 <!-- display question comments -->
 <!-- total votes -->
 <!-- if logged in? up/down vote(only 1 vote) -->
 <!-- if user created?  edit, delete -->
 
 <!-- display all answers -->
-<h3> Bro Answers </h3>
-<% @answers.each do |answer| %>
+<div class="container" id="answer-block">
+  <h3> Bro Answers </h3>
+  <% @question.answers.each do |answer| %>
   <li> <%= answer.body %> </li>
   <p> Answered by Bro: <%= answer.user.username %> </p>
+    <div class="container">
+      <% answer.comments.each do |comment| %>
+        <li> <%= comment.body %> </li>
+        <p> Commented by Bro: <%= comment.user.username %> </p>
+      <% end %>
+    </div>
+    <div class="container" id="answer-comment-block">
+      <form method="post" action="/questions/<%= @question.id %>/answers/<%= answer.id %>/comments">
+        Comment this a, dogg:
+        <input type="text" name="body" placeholder="bro, elaborate that shit!">
+        <input type="submit" value="bro, thanks bro!">
+      </form>
+    </div>
   <% end %>
+</div>
 <!-- total votes -->
 <!-- if logged in? up/down vote(only 1 vote), comments form -->
 <!-- if user created?  edit, delete -->
@@ -29,13 +58,14 @@
 <!-- if user loggedin? -->
 <% if logged_in? %>
 <!-- add answer form -->
-
+<div class="container" id="new-answer-form">
   <br>
   <form method="post" action="/questions/<%= @question.id %>/answers">
     Add Answer Brosef:
     <input type="text" name="body" placeholder="bro, help a bro out!">
     <input type="submit" value="bro, thanks bro!">
   </form>
+</div>
 <% end %>
 
 
