@@ -1,17 +1,19 @@
-<div class="container">
-  <div>
-    <% Question.all.each do |question| %>
-        <form method="post" action='/questions/<%= question.id %>/vote' class="inline">
-          <button type="submit" name="upvote" value="upvote"></button>
-        </form>
-        <a href='/questions/<%= question.id %>'><%= question.title %></a>
-    <% end %>
-  </div>
-
-</div>
-
-<% if logged_in? %>
+<div id="homepage-shtuff">
   <div class="container">
-    <a href="/questions/new">Ask a new question, bro..</a>
+    <div>
+      <% Question.all.each do |question| %>
+          <form method="post" action='/questions/<%= question.id %>/vote' class="inline">
+            <button type="submit" name="upvote" value="upvote"></button>
+          </form>
+          <a href='/questions/<%= question.id %>'><%= question.title %></a>
+      <% end %>
+    </div>
+
   </div>
-<% end %>
+
+  <% if logged_in? %>
+    <div class="container">
+      <a href="/questions/new">Ask a new question, bro..</a>
+    </div>
+  <% end %>
+</div>
