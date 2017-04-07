@@ -9,18 +9,11 @@
       <% if @error %>
         <p class="error"><%= @error %></p>
       <% end %>
-        <% Question.all.each do |question| %>
-          <h3><a href='/questions/<%= question.id %>'><%= question.title %></a> <span><%= question.total_votes %></span></h3><br>
-      <% if logged_in? %>
-        <form method="post" action='/questions/<%= question.id %>/vote' class="inline">
-          <input type="submit" name="upvote" value="+1 lite beer">
-        </form>
-        <form method="post" action='/questions/<%= question.id %>/vote' class="inline">
-          <input type="submit" name="downvote" value="-1 lite beer">
-        </form>
-      <% end %>
+    <% @questions.each do |question| %>
+          <a href='/questions/<%= question.id %>'><%= question.title %></a> <span><%= question.total_votes %></span><br>
+      <%= erb :"_votes", locals: {question: question} %>
+    <% end %>
 
-      <% end %>
     </div>
 </div>
 

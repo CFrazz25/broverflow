@@ -1,4 +1,5 @@
 get '/questions' do
+  @questions = Question.all.sort_by {|question| question.total_votes}.reverse
   erb :index
 end
 
@@ -8,6 +9,7 @@ end
 
 get '/questions/:id' do
   @question = Question.find_by(id: params[:id])
+  @sorted_answers = @question.answers.sort_by {|answer| answer.total_votes}.reverse
   # @answers = Answer.where(question_id: @question.id)
   erb :'/questions/show'
 end

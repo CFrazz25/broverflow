@@ -26,5 +26,3 @@ delete '/questions/:id/answers/:answer_id' do
   redirect "/questions/#{params[:id]}"
 end
 
-
-
