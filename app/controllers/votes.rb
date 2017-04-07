@@ -4,7 +4,7 @@ post '/questions/:question_id/vote' do
 
   if params[:upvote]
     if uservote && uservote.value == 1
-      @error = "you can't upvote on this post more than once"
+      @error = "braaaah!  Can't upvote twice on this, it's against bro code"
       question.total_votes
       erb :index
     elsif uservote && uservote.value == -1
@@ -19,7 +19,7 @@ post '/questions/:question_id/vote' do
 
   elsif params[:downvote]
     if uservote && uservote.value == -1
-      @error = "you can't downvote on this post more than once"
+      @error = "braaaah!  Can't downvote twice on this, it's against bro code"
       question.total_votes
       erb :index
     elsif uservote && uservote.value == 1
@@ -41,7 +41,7 @@ post '/answers/:answer_id/vote' do
 
   if params[:upvote]
     if uservote && uservote.value == 1
-      @error = "you can't upvote on this post more than once"
+      @error = "braaaah!  Can't upvote twice on this, it's against bro code"
       answer.total_votes
       erb :"questions/show"
     elsif uservote && uservote.value == -1
@@ -56,7 +56,7 @@ post '/answers/:answer_id/vote' do
 
   elsif params[:downvote]
     if uservote && uservote.value == -1
-      @error = "you can't downvote on this post more than once"
+      @error = "braaaah!  Can't downvote twice on this, it's against bro code"
       answer.total_votes
       erb :"questions/show"
     elsif uservote && uservote.value == 1
