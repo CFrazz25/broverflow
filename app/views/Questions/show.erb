@@ -32,7 +32,7 @@
   <% if @error %>
     <p class="error"><%= @error %></p>
   <% end %>
-  <% @question.answers.each do |answer| %>
+  <% @sorted_answers.each do |answer| %>
   <span><%= answer.total_votes %></span>
   <% if logged_in? %>
     <form method="post" action='/answers/<%= answer.id %>/vote' class="inline">
