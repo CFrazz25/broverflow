@@ -22,10 +22,10 @@
 <body id="background-image" >
     <h1  id="title">BROVERFLOW - Suuhhhhh Duuueeee</h1>
    <header class="register">
-      <h3><a class="nav" href="/">Brohome</a></h3>
+      <h2><a class="nav" href="/">Brohome</a></h2>
       <% if !logged_in? %>
-          <h3><a class="nav" href="/sessions/new">login</a></h3>
-          <h3><a class="nav" href="/users/new">register</a></h3>
+          <h3><a id="login" class="nav" href="/sessions/new">login</a></h3>
+          <h3><a id="new_user" class="nav" href="/users/new">register</a></h3>
           <% else %>
           <form method="post" action="/sessions">
             <input type="hidden" name="_method" value="delete">
