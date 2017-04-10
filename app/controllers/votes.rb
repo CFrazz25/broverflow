@@ -10,8 +10,9 @@ post '/questions/:question_id/vote' do
       erb :index
     elsif uservote && uservote.value == -1
       uservote.update_attributes(value: 1)
-      question.total_votes
-      redirect '/questions'
+
+        redirect '/questions'
+      
     else
       vote = question.votes.create(user_id: session[:user_id], value: 1)
       question.total_votes
