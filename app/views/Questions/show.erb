@@ -39,37 +39,39 @@
   <% if @error %>
     <p class="error"><%= @error %></p>
   <% end %>
-  <% @sorted_answers.each do |answer| %>
-  <span><%= answer.total_votes %></span>
-  <% if logged_in? %>
-    <form method="post" action='/answers/<%= answer.id %>/vote' class="inline">
-      <input type="submit" name="upvote" value="+1 lite beer">
-    </form>
-    <form method="post" action='/answers/<%= answer.id %>/vote' class="inline">
-      <input type="submit" name="downvote" value="-1 lite beer">
-    </form>
-  <% end %>  <li> <%= answer.body %> </li>
-  <p> Answered by <%= answer.user.username %> bro</p>
-  <% if author?(answer.user_id) %>
-    <h3><a href="/questions/<%= @question.id %>/answers/<%= answer.id %>/edit">Edit Answer</a></h3>
-    <form method="post" action="/questions/<%= @question.id %>">
-          <input type="hidden" name="_method" value="delete">
-          <button type="submit">Delete Answer</button>
-    </form>
-  <% end %>
-    <div>
-      <% answer.comments.each do |comment| %>
-        <p><%= comment.user.username %> commented: <%= comment.body %></p>
-      <% end %>
-    </div>
+  <% if @sorted_answers %>
+    <% @sorted_answers.each do |answer| %>
+    <span><%= answer.total_votes %></span>
     <% if logged_in? %>
-      <div class="container" id="answer-comment-block">
-        <form method="post" action="/questions/<%= @question.id %>/answers/<%= answer.id %>/comments">
-          Comment this a, dogg:
-          <input type="text" name="body" placeholder="bro, elaborate that shit!">
-          <input type="submit" value="bro, thanks bro!">
-        </form>
+      <form method="post" action='/answers/<%= answer.id %>/vote' class="inline">
+        <input type="submit" name="upvote" value="+1 lite beer">
+      </form>
+      <form method="post" action='/answers/<%= answer.id %>/vote' class="inline">
+        <input type="submit" name="downvote" value="-1 lite beer">
+      </form>
+    <% end %>  <li> <%= answer.body %> </li>
+    <p> Answered by <%= answer.user.username %> bro</p>
+    <% if author?(answer.user_id) %>
+      <h3><a href="/questions/<%= @question.id %>/answers/<%= answer.id %>/edit">Edit Answer</a></h3>
+      <form method="post" action="/questions/<%= @question.id %>">
+            <input type="hidden" name="_method" value="delete">
+            <button type="submit">Delete Answer</button>
+      </form>
+    <% end %>
+      <div>
+        <% answer.comments.each do |comment| %>
+          <p><%= comment.user.username %> commented: <%= comment.body %></p>
+        <% end %>
       </div>
+      <% if logged_in? %>
+        <div class="container" id="answer-comment-block">
+          <form method="post" action="/questions/<%= @question.id %>/answers/<%= answer.id %>/comments">
+            Comment this a, dogg:
+            <input type="text" name="body" placeholder="bro, elaborate that shit!">
+            <input type="submit" value="bro, thanks bro!">
+          </form>
+        </div>
+      <% end %>
     <% end %>
   <% end %>
 </div>
