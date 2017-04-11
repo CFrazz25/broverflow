@@ -1,37 +1,60 @@
 post '/questions/:question_id/vote' do
+
   question = Question.find_by(id: params[:question_id])
   uservote = question.votes.find_by(user_id: session[:user_id])
   @questions = Question.all.sort_by {|question| question.total_votes}.reverse
 
   if params[:upvote]
+
     if uservote && uservote.value == 1
       @error = "braaaah!  Can't upvote twice on this, it's against bro code"
-      question.total_votes
-      erb :index
+      if request.xhr?
+          "<h1>braaaah!  Can't upvote twice on this, it's against bro code</h1>"
+      else
+        erb :index
+      end
+
     elsif uservote && uservote.value == -1
       uservote.update_attributes(value: 1)
 
-        redirect '/questions'
-      
+        if request.xhr?
+          question.total_votes.to_s
+        else
+          redirect '/questions'
+        end
+
     else
+
       vote = question.votes.create(user_id: session[:user_id], value: 1)
-      question.total_votes
-      redirect '/questions'
+       if request.xhr?
+          question.total_votes.to_s
+        else
+          redirect '/questions'
+        end
     end
 
   elsif params[:downvote]
     if uservote && uservote.value == -1
       @error = "braaaah!  Can't downvote twice on this, it's against bro code"
-      question.total_votes
-      erb :index
+      if request.xhr?
+          "<h1>braaaah!  Can't downvote twice on this, it's against bro code</h1>"
+      else
+        erb :index
+      end
     elsif uservote && uservote.value == 1
       uservote.update_attributes(value: -1)
-      question.total_votes
-      redirect '/questions'
+      if request.xhr?
+          question.total_votes.to_s
+        else
+          redirect '/questions'
+        end
     else
     vote = question.votes.create(user_id: session[:user_id], value: -1)
-    question.total_votes
-    redirect '/questions'
+    if request.xhr?
+          question.total_votes.to_s
+        else
+          redirect '/questions'
+        end
     end
   end
 end
