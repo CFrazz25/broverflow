@@ -1,8 +1,9 @@
 <% if logged_in? %>
-  <form method="post" action='/questions/<%= question.id %>/vote' class="inline">
+  <form method="post" action='/questions/<%= question.id %>/vote' class="inline upvoting">
     <input type="submit" name="upvote" value="+1 lite beer">
+
   </form>
-  <form method="post" action='/questions/<%= question.id %>/vote' class="inline">
+  <form method="post" action='/questions/<%= question.id %>/vote' class="inline downvoting">
     <input type="submit" name="downvote" value="-1 lite beer">
   </form>
 <% end %>

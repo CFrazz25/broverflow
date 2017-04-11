@@ -1,19 +1,41 @@
 $(document).ready(function() {
 
-  // $("#homepage-shtuff").on('submit', 'form', function(event){
-  //   event.preventDefault();
-  //   var form = $(this);
-  //   var url = form.attr('action');
-  //   var method = form.attr('method');
-  //   $.ajax{(
-  //     url: url,
-  //     method: method
-  //     )}
-  // }).done(function(response){
-  //   console.log(response);
-  //   form.closest('#question a span').html(response);
-  // })
-  // Having trouble with ajax on changing votes, might be too much going on in votes controller. 
+  $("#homepage-shtuff").on('submit', 'form.upvoting', function(event){
+    event.preventDefault();
+    var question = $(this).parent();
+    var url = $(this).attr('action');
+    var method = $(this).attr('method');
+     var data = { upvote: "+1 lite beer"}
+    $.ajax({
+      url: url,
+      method: method,
+      data: data
+      }).done(function(response){
+     question.find('#vote_total').html(response);
+
+})$.uniqueSort()
+    })
+
+    $("#homepage-shtuff").on('submit', 'form.downvoting', function(event){
+    event.preventDefault();
+    var question = $(this).parent();
+    var url = $(this).attr('action');
+    var method = $(this).attr('method');
+     var data = { downvote: "-1 lite beer"}
+    $.ajax({
+      url: url,
+      method: method,
+      data: data
+      }).done(function(response){
+     question.find('#vote_total').html(response);
+
+})
+    })
+
+
+
+
+
 
 
   $( "#login" ).mouseenter(function() {
@@ -67,5 +89,5 @@ $( ".logout" ).mouseleave(function() {
     })
   })
 
-  
+
 });

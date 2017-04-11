@@ -9,9 +9,13 @@
       <% if @error %>
         <p class="error"><%= @error %></p>
       <% end %>
+
     <% @questions.each do |question| %>
-          <a href='/questions/<%= question.id %>'><%= question.title %></a> <span><%= question.total_votes %></span><br>
+    <article>
+          <a href='/questions/<%= question.id %>'><%= question.title %></a> <span id="vote_total"><%= question.total_votes %></span><br>
+
       <%= erb :"_votes", locals: {question: question} %>
+    </article>
     <% end %>
 
     </div>
